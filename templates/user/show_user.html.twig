@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'User' }}{% endblock %}
+
+{% block logout %}{% endblock %}
+
+{% block welcome %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+
+    <!-- Single button -->
+    <div class="card">
+        <div class="card-header bg-white header-elements-inline">
+            <h4 class="card-title"><i class="icon-list mr-2"></i> {{ 'Users List' }}</h4>
+            <div class="header-elements">
+                <a href="{{ path('user_new') }}" class="btn btn-labeled btn-labeled-right bg-blue"><i class="icon-add"></i> {{ 'new'|upper }}</a>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
+            Header with basic button. Available in all sizes, colors and options
+        </div> -->
+    </div>
+    <!-- /single button -->
+
+    <!-- Basic responsive configuration -->
+    <div class="card">
+
+        <table class="table datatable-responsive table-bordered table-striped table-hover">
+            <thead class="bg-blue">
+            <tr>
+                <th scope="col">{{ 'Last Name'|upper }}</th>
+                <th scope="col">{{ 'First Name'|upper }}</th>
+                <th scope="col">{{ 'User Name'|upper }}</th>
+                <th scope="col">{{ 'Email'|upper }}</th>
+                <th scope="col">{{ 'Phone'|upper }}</th>
+                <th scope="col">{{ 'Profile'|upper }}</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'Creation Date'|upper}}</th>
+                <th class="text-center"></i> {{ 'actions'|upper }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    {% if not user.profiles.empty %}
+                    <td>
+                        {% for profile in user.profiles %}
+                            {{ profile.name }}
+                            {% if not loop.last %} {% endif %}
+                        {% endfor %}
+                    </td>
+                    {% endif %}
+                    <td>{{ user.createdAt|date("d/m/Y") }}</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <a href="{{ path('user_edit', {id:user.id}) }}" data-popup="tooltip" title="{{ 'update' }}" data-container="body" class="list-icons-item form-icon text-primary-600">
+                                <i class="icon-pencil7"></i>
+                            </a>
+                            <a href="{{ path('user_delete', {id:user.id}) }}" data-popup="tooltip" title="{{ 'delete' }}" data-container="body" onclick="return confirm('{{ 'Confirm your action' }}')" class="list-icons-item text-danger-600">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+            {% block javascripts %}
+                {{ parent() }}
+
+                <!-- Theme JS files -->
+                <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+                <script src="{{ asset('global_assets/js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+                <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+
+                <script src="{{ asset('global_assets/js/demo_pages/datatables_responsive.js') }}"></script>
+                <!-- /theme JS files -->
+            {% endblock %}

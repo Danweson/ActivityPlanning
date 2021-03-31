@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Profile' }}{% endblock %}
+
+{% block logout %}{% endblock %}
+
+{% block welcome %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+    <!-- Single button -->
+    <div class="card">
+        <div class="card-header bg-white header-elements-inline">
+            <h4 class="card-title"><i class="icon-add mr-2"></i> {{ 'Profile' }}</h4>
+            <div class="header-elements">
+                <a href="{{ path('profile') }}" class="btn btn-labeled btn-labeled-right bg-blue"><i class="icon-list"></i> {{ 'Profiles List'|upper }}</a>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
+            Header with basic button. Available in all sizes, colors and options
+        </div> -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                {{ form_start(form) }}
+                <div class="card-header header-elements-inline bg-blue">
+                    <h5 class="card-title">{{ 'form'|upper }}</h5>
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="header-elements-inline">
+                                <div class="header-elements">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    {{ form_start(form) }}
+
+                    <div class="form-group">
+                        <label>{{ 'name' }}: <span class="text-danger">*</span></label>
+                        {{ form_widget(form.name) }}
+                        <span class="text-danger">{{ form_errors(form.name) }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ 'description' }} <span class="text-danger">*</span></label>
+                        {{ form_widget(form.description) }}
+                        <span class="text-danger">{{ form_errors(form.description) }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-light" type="reset">{{ 'cancel'|upper }}</button>
+                        <button class="btn btn-primary" type="submit">{{ 'submit'|upper }}<i class="icon-paperplane ml-2"></i></button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Theme JS files -->
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
+    <script src="{{ asset('global_assets/js/demo_pages/form_layouts.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_select2.js') }}"></script>
+    <!-- /theme JS files -->
+{% endblock %}

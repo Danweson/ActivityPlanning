@@ -1,0 +1,23 @@
+	<li class="nav-item dropdown dropdown-user">
+		{% if app.user %}
+			<!-- <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+				<img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"class="rounded-circle" alt="">
+				<span>{{ app.user.firstName }} {{ app.user.lastName }}</span>
+			</a> -->
+			<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" style="color:#fff !important;">
+				<i class="icon-user icon-2x"></i>
+			</a>
+		{% endif %}
+		
+		<div class="dropdown-menu dropdown-menu-right">
+			{% if app.user %} 
+				<a href="#" class="dropdown-item"><i class="icon-user-check"></i> {{ app.user.firstName }}</a>
+				<div class="dropdown-divider"></div>
+				<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> {{ 'Profile' }}</a>
+				<a href="#" class="dropdown-item"><i class="icon-lock2"></i> {{ 'Password' }}</a>
+				<div class="dropdown-divider"></div>
+				<a href="{{ path('account_setting') }}" class="dropdown-item"><i class="icon-cog5"></i> {{ 'Account Setting' }}</a>
+				<a href="{{ path('security_logout') }}" class="dropdown-item"><i class="icon-switch2"></i> {{ 'Logout'}}</a>
+			{% endif %}
+		</div>
+	</li>

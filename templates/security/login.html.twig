@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Login' }}{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block navbar_top %}bg-slate-600{% endblock %}
+
+{% block content_wrapper %}
+
+<!-- Content area -->
+<div class="content d-flex justify-content-center align-items-center">
+<form class="login-form" method="post">
+    <div class="card mb-0">
+        <div class="card-body">
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+            <div class="text-center mb-3">
+                <i class="icon-people icon-2x text-warning-400 border-warning-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                <h5 class="mb-0">{{ 'Sign In to your Account' }}</h5>
+                <span class="d-block text-muted">{{ 'Your Credentials' }}</span>
+            </div>
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('security_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <div class="form-group form-group-feedback form-group-feedback-left">
+                <input type="text" class="form-control"  value="{{ last_username }}" placeholder="{{ 'Username' }}" id="username" name="_username" required autofocus>
+                <div class="form-control-feedback">
+                    <i class="icon-user text-muted"></i>
+                </div>
+            </div>
+           <div class="form-group form-group-feedback form-group-feedback-left">
+            <input type="password" class="form-control" placeholder="{{ 'Password' }}" id="password" name="_password" required>
+            <div class="form-control-feedback">
+                <i class="icon-lock2 text-muted"></i>
+            </div>
+               <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        </div>
+
+
+
+            <div class="form-group d-flex align-items-center">
+                <div class="form-check mb-0">
+                    <label class="form-check-label">
+                        <input type="checkbox" name="remember" class="form-input-styled" checked data-fouc>
+                        {{ 'Me rappeler' }}
+                    </label>
+                </div>
+
+                <a href="login_password_recover.html" class="ml-auto">{{ 'Forgottent Password?' }}</a>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">{{ 'Sign in' }} <i class="icon-circle-right2 ml-2"></i></button>
+            </div>
+
+            <span class="form-text text-center text-muted">{{ 'confidenciality policy' }}<!-- By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a> --></span>
+        </div>
+    </div>
+    </form>
+    <!-- /login card -->
+
+</div>
+    <!-- /content area -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/login.js') }}"></script>
+{% endblock %}

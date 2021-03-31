@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Sign Up' }}{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block navbar_top %}bg-slate-600{% endblock %}
+
+{% block content_wrapper %}
+
+    <!-- Content area -->
+    <div class="content d-flex justify-content-center align-items-center">
+        {{ form_start(registrationForm) }}
+            <div class="card mb-0">
+                <div class="card-body">
+
+                    <div class="text-center mb-3">
+                        <i class="icon-people icon-2x text-warning-400 border-warning-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                        <h5 class="mb-0">{{ 'Sign Up to create your account ' }}</h5>
+                    </div>
+
+
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                        {{ form_widget(registrationForm.firstName) }}
+                        <span class="text-danger">{{ form_errors(registrationForm.firstName) }}</span>
+                    </div>
+
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                        {{ form_widget(registrationForm.lastName) }}
+                        <span class="text-danger">{{ form_errors(registrationForm.lastName) }}</span>
+                    </div>
+
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                        {{ form_widget(registrationForm.email) }}
+                        <span class="text-danger">{{ form_errors(registrationForm.email) }}</span>
+                    </div>
+
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                        {{ form_widget(registrationForm.username) }}
+                        <span class="text-danger">{{ form_errors(registrationForm.username) }}</span>
+                    </div>
+
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                    {{ form_widget(registrationForm.phone) }}
+                    <span class="text-danger">{{ form_errors(registrationForm.phone) }}</span>
+            </div>
+                    <div class="form-group form-group-feedback form-group-feedback-left">
+                        {{ form_widget(registrationForm.password) }}
+                        <span class="text-danger">{{ form_errors(registrationForm.password) }}</span>
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <div class="form-check mb-0">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="remember" class="form-input-styled" checked data-fouc>
+                                {{ 'Remember Me' }}
+                            </label>
+                        </div>
+
+                        <a href="{{ path('security_login') }}" class="ml-auto">{{ 'Do you have an account?  Sign in' }}</a>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">{{ 'Sin Up' }} <i class="icon-circle-right2 ml-2"></i></button>
+                    </div>
+
+                    <span class="form-text text-center text-muted">{{ 'confidenciality policy' }}<!-- By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a> --></span>
+                </div>
+            </div>
+        {{ form_end(registrationForm) }}
+        <!-- /login card -->
+
+    </div>
+    <!-- /content area -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/login.js') }}"></script>
+{% endblock %}

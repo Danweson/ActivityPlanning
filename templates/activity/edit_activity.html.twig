@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Activity' }}{% endblock %}
+
+{% block logout %}{% endblock %}
+
+{% block welcome %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+    <!-- Single button -->
+    <div class="card">
+        <div class="card-header bg-white header-elements-inline">
+            <h4 class="card-title"><i class="icon-add mr-2"></i> {{ 'Activity' }}</h4>
+            <div class="header-elements">
+                <a href="{{ path('activity') }}" class="btn btn-labeled btn-labeled-right bg-blue"><i class="icon-list"></i> {{ 'Activity List'|upper }}</a>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
+            Header with basic button. Available in all sizes, colors and options
+        </div> -->
+    </div>
+    <!-- /single button -->
+
+    <!-- 2 columns form -->
+    <div class="card">
+        <div class="card-header header-elements-inline bg-blue">
+            <h5 class="card-title">{{ 'form'|upper }}</h5>
+            <!-- <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-6">
+                    <fieldset>
+                        <div class="form-group">
+                            <label>{{ 'content' }}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.content) }}
+                            <span class="text-danger">{{ form_errors(form.content) }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'startDate' }}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.startDate) }}
+                            <span class="text-danger">{{ form_errors(form.startDate) }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'endDate' }}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.endDate) }}
+                            <span class="text-danger">{{ form_errors(form.endDate) }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'isNotificated'}}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.isNotificated) }}
+                            <span class="text-danger">{{ form_errors(form.isNotificated) }}</span>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-6">
+                    <fieldset>
+                        <div class="form-group">
+                            <label>{{ 'category'}}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.category) }}
+                            <span class="text-danger">{{ form_errors(form.category) }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ 'groups'}}: <span class="text-danger">*</span></label>
+                            {{ form_widget(form.groups) }}
+                            <span class="text-danger">{{ form_errors(form.groups) }}</span>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-light" type="reset">{{ 'cancel'|upper }}</button>
+                <button class="btn btn-primary" type="submit">{{ 'submit'|upper }}<i class="icon-paperplane ml-2"></i></button>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Theme JS files -->
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
+    <script src="{{ asset('global_assets/js/demo_pages/form_layouts.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_select2.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+    <script src="{{asset('global_assets/js/demo_pages/form_multiselect.js') }}"></script>
+    <!-- /theme JS files -->
+{% endblock %}

@@ -1,0 +1,25 @@
+
+{% for menu in app.session.get('menu')|sort  %}
+	{% if app.user %}
+	<li class="nav-item nav-item-submenu">
+		<a class="nav-link" href="#">
+			<i class="{{ menu.icon }}"></i>
+			<span>
+					{{ menu.name }}
+			</span>
+		</a>
+
+		<ul class="nav nav-group-sub" data-submenu-title="{{ menu.name }}">
+			{% for submenu in app.session.get('submenu')|sort %}
+				{% if submenu.menu.id == menu.id %}
+				<li class="nav-item">
+					<a href="{{ path(submenu.route) }}" class="nav-link">
+							{{ submenu.name }}
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</li>
+	{% endif %}
+{% endfor %}

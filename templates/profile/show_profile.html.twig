@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Profile' }}{% endblock %}
+
+{% block logout %}{% endblock %}
+
+{% block welcome %}{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+
+    <!-- Single button -->
+    <div class="card">
+        <div class="card-header bg-white header-elements-inline">
+            <h4 class="card-title"><i class="icon-list mr-2"></i> {{ 'Profiles List' }}</h4>
+            <div class="header-elements">
+                <a href="{{ path('profile_new') }}" class="btn btn-labeled btn-labeled-right bg-blue"><i class="icon-add"></i> {{ 'new'|upper }}</a>
+            </div>
+        </div>
+
+        <!-- <div class="card-body">
+            Header with basic button. Available in all sizes, colors and options
+        </div> -->
+    </div>
+    <!-- /single button -->
+
+    <!-- Basic responsive configuration -->
+    <div class="card">
+
+        <table class="table datatable-responsive table-bordered table-striped table-hover">
+            <thead class="bg-blue">
+            <tr>
+                <th scope="col">{{ 'Name'|upper }}</th>
+                <th scope="col">{{ 'Description'|upper }}</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'Creation Date'}}</th>
+                <th class="text-center"></i> {{ 'actions'|upper }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile.name }}</td>
+                    <td>{{ profile.description }}</td>
+                    <td>{{ profile.createdAt|date("d/m/Y") }}</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <a href="{{ path('profile_edit', {id:profile.id}) }}" data-popup="tooltip" title="{{ 'update' }}" data-container="body" class="list-icons-item form-icon text-primary-600">
+                                <i class="icon-pencil7"></i>
+                            </a>
+                            <a href="{{ path('profile_delete', {id:profile.id}) }}" data-popup="tooltip" title="{{ 'delete' }}" data-container="body" onclick="return confirm('{{ 'Confirmez votre action' }}')" class="list-icons-item text-danger-600">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+            {% block javascripts %}
+                {{ parent() }}
+
+                <!-- Theme JS files -->
+                <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+                <script src="{{ asset('global_assets/js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+                <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+
+                <script src="{{ asset('global_assets/js/demo_pages/datatables_responsive.js') }}"></script>
+                <!-- /theme JS files -->
+            {% endblock %}

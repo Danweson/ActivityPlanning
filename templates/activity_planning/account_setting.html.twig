@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Account Setting' }}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block navbar_color %}bg-teal-800{% endblock %}
+
+{% block toogle %}{% endblock %}
+
+{% block logout %}
+	<li class="nav-item dropdown" style="margin-top:5px !important;">
+		<a href="{{ path('security_logout') }}" class="btn btn-labeled btn-labeled-right bg-primary"><i class="icon-switch2"></i> {{ 'logout' }}</a>
+	</li>
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block user %}{% endblock %}
+
+{% block header_button %}
+    <a href="{{ path('security_logout') }}" class="btn btn-labeled btn-labeled-right bg-primary"><i class="icon-switch2"></i> {{ 'logout' }}</a>
+{% endblock %}
+
+{% block welcome %}
+	<li class="nav-item">
+		<h4><i class="icon-user mr-2"></i> <span class="font-weight-semibold">{{ 'Welcome' }}!</span> - {{ app.user.firstName }}</h4>
+	</li>
+{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+
+    <!-- Widgets list -->
+    <div class="row">
+
+        {% for userComponent in userComponents %}
+        <div class="card" style="margin:0 12px 12px 10px">
+            <div class="card-body text-center">
+                <i class="{{ userComponent.icon }} icon-2x text-success-400 border-success-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                <h5 class="card-title"> </h5>
+                <a href="{{ path('component_loading', {id:userComponent.id}) }}" class="btn bg-primary">{{ userComponent.name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}
